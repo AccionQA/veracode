@@ -129,7 +129,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ inputs.owner }}/QuatarFlaws
-          githubToken: ${{ inputs.token }}
+          token: ${{ inputs.token }}
           path: target-repo
 
       - name: Convert policy scan output to SARIF format for java language
