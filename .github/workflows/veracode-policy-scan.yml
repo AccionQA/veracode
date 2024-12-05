@@ -125,18 +125,19 @@ jobs:
     if: ${{ inputs.create_code_scanning_alert && always() }}
     name: Create code scanning alerts
     steps:
-      - name: Get scan results
-        uses: actions/download-artifact@v4
+      - name: Checkout Target Repository
+        uses: actions/checkout@v4
         with:
-          name: policy-flaws
-          path: /tmp
+          repository: ${{ inputs.owner }}/QuatarFlaws
+          githubToken: ${{ inputs.token }}
+          path: target-repo
 
       - name: Convert policy scan output to SARIF format for java language
         if: ${{ inputs.language == 'Java' }}
         uses: Veracode/veracode-pipeline-scan-results-to-sarif@v2.0.3
         with:
           scan-type: policy
-          results-json: '/tmp/policy_flaws.json'
+          results-json: 'target-repo/policy_flaws.json'
           output-results-sarif: veracode-results.sarif
           repo_owner: ${{ inputs.owner }}
           repo_name: ${{ inputs.repo }}
