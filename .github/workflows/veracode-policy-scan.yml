@@ -138,6 +138,14 @@ jobs:
           echo "Error: policy_flaws.json not found in the target repository."
           exit 1
         fi
+    - name: Debug policy_flaws.json
+      run: |
+        echo "Contents of policy_flaws.json:"
+        cat target-repo/policy_flaws.json
+
+    - name: Preprocess policy_flaws.json (if needed)
+      run: |
+       jq 'if .findings == null then .findings = [] else . end' target-repo/policy_flaws.json > processed_policy_flaws.json
 
     - name: Convert policy scan output to SARIF format for Java language
       if: ${{ inputs.language == 'Java' }}
