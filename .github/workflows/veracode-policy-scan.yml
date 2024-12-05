@@ -120,11 +120,11 @@ jobs:
           sandboxname: GitHub App Scans-${{ github.event.client_payload.user_config.sandbox_scan.branch }}
 
   code-scanning-alert:
-  needs: policy_scan
-  runs-on: ubuntu-latest
-  if: ${{ inputs.create_code_scanning_alert && always() }}
-  name: Create code scanning alerts
-  steps:
+   needs: policy_scan
+   runs-on: ubuntu-latest
+   if: ${{ inputs.create_code_scanning_alert && always() }}
+   name: Create code scanning alerts
+   steps:
     - name: Checkout Target Repository
       uses: actions/checkout@v4
       with:
