@@ -148,7 +148,7 @@ jobs:
 
       - name: Convert policy scan output to SARIF format for non java language
         if: ${{ inputs.language != 'Java' }}
-        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v2.0.3
+        uses: AccionQA/veracode-pipeline-scan-results-to-sarif@master
         with:
           scan-type: policy
           results-json: '/tmp/policy_flaws.json'
