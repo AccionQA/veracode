@@ -138,7 +138,7 @@ jobs:
           path: /tmp
 
       - name: Convert policy scan output to SARIF format
-        uses: veracode/veracode-pipeline-scan-results-to-sarif@master
+        uses: Veracode/veracode-pipeline-scan-results-to-sarif@v2.0.4
         with:
           scan-type: policy
           results-json: '/tmp/policy_flaws.json'
